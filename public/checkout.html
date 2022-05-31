@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LKK Store Checkout</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="lkk-logo-06.webp" />
+  <link rel="apple-touch-icon" sizes="128x128" href="app-icon.png">
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <section>
+    <div class="product">
+      <img src="LKK-logo.webp" alt="LKK Store" />
+    </div>
+    <form action="/create-checkout-session" method="POST" id='form'>
+      <div id='form-items'></div>
+      <button type="submit" id="checkout-button">Checkout</button>
+    </form>
+  </section>
+
+  <script type="text/javascript">
+    var queryString = window.location.search;
+    queryString = queryString.replace('?', '')
+
+    var items = [];
+    var list = queryString.split('&')
+
+    var prices = [360,320,150,120]
+
+    var total = 0;
+
+    var htmlstr = ''
+
+    list.forEach(function(d,i){
+      d = d.split("=")
+      items.push({
+        item: d[0],
+        count: d[1]
+      })
+      total += d[1]*prices[i]
+
+      var name = d[0].replace('tshirt360', "Tshirt $360").replace('tshirt320', "Tshirt $320").replace("sticker", "LKK Sticker Pack $150")
+
+      if (+d[1] > 0) {
+        htmlstr += '<div><label for="' + d[0] + '">' + name + ' x ' + d[1] + '</label><input type="text" name="' + d[0] + '" value="' + d[1] + '"></div>'
+      }
+      
+    })
+
+    htmlstr += '<div class="total">Total $' + total + '</div>'
+
+    // var el = document.querySelector('script');
+    // el.setAttribute('data-amount', amount);
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    var el2 = document.querySelector('#form-items');
+    el2.innerHTML = htmlstr;
+
+  </script>
+</body>
+</html>
