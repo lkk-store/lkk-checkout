@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());      // if needed
 
-const YOUR_DOMAIN = 'http://localhost:4242';
+const YOUR_DOMAIN = 'http://checkout.lkk-store.com';
 
 app.post('/create-checkout-session', async (req, res) => {
 
