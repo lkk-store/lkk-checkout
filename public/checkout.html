@@ -28,7 +28,7 @@
     var items = [];
     var list = queryString.split('&')
 
-    var prices = [360,320,150,120]
+    var prices = [360,320,280,150,120]
 
     var total = 0;
 
@@ -42,7 +42,7 @@
       })
       total += d[1]*prices[i]
 
-      var name = d[0].replace('tshirt360', "Tshirt $360").replace('tshirt320', "Tshirt $320").replace("sticker", "LKK Sticker Pack $150")
+      var name = d[0].replace('tshirt360', "Tshirt $360").replace('tshirt320', "Tshirt $320").replace('tshirt280', "Tshirt $280").replace("sticker", "LKK Sticker Pack $150")
 
       if (+d[1] > 0) {
         htmlstr += '<div><label for="' + d[0] + '">' + name + ' x ' + d[1] + '</label><input type="text" name="' + d[0] + '" value="' + d[1] + '"></div>'

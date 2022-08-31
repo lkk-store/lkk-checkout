@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());      // if needed
 
-const YOUR_DOMAIN = 'http://checkout.lkk-store.com';
+const YOUR_DOMAIN = 'https://checkout.lkk-store.com';
 
 app.post('/create-checkout-session', async (req, res) => {
 
@@ -17,6 +17,7 @@ app.post('/create-checkout-session', async (req, res) => {
   var lookup = {
     tshirt360: 'price_1L1p4pLWOuW7oqJ6xbmkJASg',
     tshirt320: 'price_1L58s9LWOuW7oqJ67uvMmcPM',
+    tshirt280: 'price_1LcrSjLWOuW7oqJ6LmxBMevk',
     sticker: 'price_1L5QeALWOuW7oqJ6pgWR5TkG'
   }
 
